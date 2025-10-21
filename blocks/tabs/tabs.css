@@ -1,48 +1,249 @@
-.tabs {
-  max-width: 1200px;
-  margin: 40px auto;
+/**
+ * Tabs Block Styles
+ * Pixel-perfect reproduction from WKND Trendsetters site
+ */
+
+/* ==================== CSS Custom Properties ==================== */
+:root {
+  /* Typography */
+  --tabs-font-family: "Instrument Sans", sans-serif;
+  --tabs-heading-font: "Syncopate", sans-serif;
+  --tabs-font-size: 15px;
+  --tabs-heading-size-mobile: 32px;
+  --tabs-heading-size-desktop: 45.28px;
+  
+  /* Colors */
+  --tabs-text-color: rgb(255, 255, 255);
+  --tabs-bg-color: rgb(0, 0, 0);
+  --tabs-active-opacity: 1;
+  --tabs-inactive-opacity: 0.5;
+  --tabs-underline-color: rgb(255, 255, 255);
+  
+  /* Spacing */
+  --tabs-padding: 15px 22.5px;
+  --tabs-gap: 16px;
+  --tabs-gap-mobile: 0px;
+  
+  /* Layout */
+  --tabs-border-radius: 20px;
+  --tabs-underline-height: 1px;
+  
+  /* Transitions */
+  --tabs-transition: opacity 0.3s ease, border-bottom 0.3s ease;
 }
 
+/* ==================== Block Container ==================== */
+.tabs.block {
+  margin: 0;
+  padding: 0;
+  background-color: var(--tabs-bg-color);
+  color: var(--tabs-text-color);
+  display: block;
+  width: 100%;
+  grid-column: 1 / -1; /* Span all columns of parent EDS grid */
+}
+
+.tabs-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 48px;
+  width: 100%;
+}
+
+/* ==================== Global Style Reset ==================== */
+/*
+ * CRITICAL: Reset EDS boilerplate button styles.
+ * Original design used plain divs, not styled buttons.
+ * EDS applies rounded corners, shadows, margins to ALL buttons.
+ */
+.tabs.block button.tab-button {
+  /* Reset framework button properties */
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+  max-width: none;
+}
+
+/* ==================== Tablist (Navigation) ==================== */
 .tabs-list {
-  display: flex;
-  gap: 0;
-  border-bottom: 1px solid #ddd;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--tabs-gap-mobile);
+  position: relative;
+  grid-column: 1 / -1; /* Full width on mobile */
 }
 
-.tabs-tab {
-  background: transparent;
+.tab-button {
+  display: block;
+  padding: var(--tabs-padding);
+  font-family: var(--tabs-font-family);
+  font-size: var(--tabs-font-size);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--tabs-text-color);
+  background-color: transparent;
   border: none;
-  border-bottom: 3px solid transparent;
-  padding: 15px 30px;
+  border-bottom: var(--tabs-underline-height) solid transparent;
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  opacity: var(--tabs-inactive-opacity);
+  transition: var(--tabs-transition);
+  text-align: center;
+  position: relative;
 }
 
-.tabs-tab[aria-selected="true"] {
-  border-bottom-color: #000;
-  font-weight: 700;
+.tab-button[aria-selected="true"],
+.tab-button.active {
+  opacity: var(--tabs-active-opacity);
+  border-bottom-color: var(--tabs-underline-color);
 }
 
-.tabs-tab:hover {
-  background: #f5f5f5;
+.tab-button:hover {
+  opacity: 0.75;
 }
 
+.tab-button:focus-visible {
+  outline: 2px solid var(--tabs-underline-color);
+  outline-offset: 2px;
+}
+
+/* ==================== Tabpanels (Content) ==================== */
 .tabs-panels {
-  padding: 20px 0;
+  grid-column: 1 / -1; /* Span full width */
 }
 
-.tabs-panel {
+.tab-panel {
+  display: block;
+  text-align: center;
+}
+
+.tab-panel[hidden] {
   display: none;
 }
 
-.tabs-panel[aria-hidden="false"] {
-  display: block;
+.tab-panel h3 {
+  font-family: var(--tabs-heading-font);
+  font-size: var(--tabs-heading-size-mobile);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--tabs-text-color);
+  margin: 0 0 1rem;
+  text-align: center;
+  text-transform: none;
 }
 
-.tabs-panel img {
-  max-width: 100%;
+.tab-panel img {
+  width: 100%;
   height: auto;
+  border-radius: var(--tabs-border-radius);
+  object-fit: cover;
+  display: block;
+  margin-top: 1rem;
+}
+
+.tab-panel picture {
+  display: block;
+  line-height: 0;
+}
+
+/* ==================== Responsive Styles ==================== */
+@media (min-width: 768px) {
+  .tabs-list {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--tabs-gap);
+    grid-column: 2 / 5; /* Center tabs in columns 2-4 */
+  }
+
+  .tab-panel h3 {
+    font-size: 38px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tab-panel h3 {
+    font-size: var(--tabs-heading-size-desktop);
+  }
+}
+
+/* ==================== EDS Pattern Integration ==================== */
+
+/* 1. Explicit List Resets */
+.tabs.block > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs.block > ul > li {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+/* 2. Loading States */
+.tabs.block[data-block-status="loading"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.tabs.block[data-block-status="loaded"] {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.tabs.block[data-block-status="error"] {
+  border: 2px solid red;
+  padding: 1rem;
+}
+
+/* 3. Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .tabs.block *,
+  .tab-button {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 4. Focus Indicators */
+.tabs.block :focus-visible {
+  outline: 2px solid var(--tabs-underline-color);
+  outline-offset: 2px;
+}
+
+/* 5. High Contrast Mode */
+@media (prefers-contrast: high) {
+  .tabs.block {
+    border: 1px solid;
+  }
+  
+  .tab-button {
+    border: 1px solid;
+  }
+}
+
+/* 6. Print Styles */
+@media print {
+  .tab-button[aria-selected="false"] {
+    display: none;
+  }
+  
+  .tab-panel[hidden] {
+    display: block !important;
+    page-break-before: always;
+  }
+}
+
+/* 7. Performance Optimizations */
+.tabs.block {
+  contain: layout style;
+}
+
+.tab-panel img {
+  content-visibility: auto;
 }
