@@ -1,0 +1,378 @@
+/**
+ * Cards2 Block - WKND Trendsetters Style
+ * Text-only cards (no images)
+ */
+
+/* ==================== LIST RESET ==================== */
+.cards2 > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* CRITICAL: Explicitly remove boilerplate styles */
+.cards2 > ul > li {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+/* ==================== CARD STRUCTURE ==================== */
+.cards2-card {
+  display: block;
+}
+
+.cards2-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.cards2-card-link:hover {
+  transform: translateY(-4px);
+}
+
+/* ==================== IMAGE HANDLING ==================== */
+.cards2-card-image {
+  line-height: 0;
+  margin-bottom: 20px;
+}
+
+.cards2-card-image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+/* Picture element support */
+.cards2-card-image picture {
+  display: block;
+  line-height: 0;
+}
+
+.cards2-card-image picture img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* ==================== CARD CONTENT ==================== */
+.cards2-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Meta (e.g., "Chill • 3 min read") */
+.cards2-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 25.6px;
+  font-family: var(--body-font-family);
+  color: var(--text-color);
+}
+
+/* Title */
+.cards2-card-title {
+  font-size: 22.56px;
+  font-weight: 400;
+  line-height: 29.328px;
+  font-family: var(--heading-font-family);
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* Description */
+.cards2-card-description {
+  font-size: 16px;
+  line-height: 25.6px;
+  font-family: var(--body-font-family);
+  color: var(--text-color);
+  margin: 0;
+}
+
+/* Read link */
+.cards2-card-read {
+  font-size: 16px;
+  line-height: 25.6px;
+  font-family: var(--body-font-family);
+  color: var(--text-color);
+  margin-top: 4px;
+}
+
+/* ==================== LINK PATTERNS ==================== */
+.cards2-card-link:focus {
+  outline: none;
+}
+
+.cards2-card-link:focus-visible {
+  outline: 2px solid var(--accent-color, #000);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.cards2-card-link:active {
+  transform: translateY(-2px);
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+/* Screen reader support */
+.cards2-card-link[aria-label]::before {
+  content: '';
+}
+
+/* Focus visible (keyboard navigation) */
+.cards2-card-link:focus-visible .cards2-card-image img {
+  outline: 2px solid var(--accent-color, #000);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cards2-card-link {
+    transition: none;
+  }
+  
+  .cards2-card-link:hover {
+    transform: none;
+  }
+  
+  .cards2-card-link:active {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cards2-card-link {
+    border: 1px solid currentColor;
+  }
+  
+  .cards2-card-link:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS ==================== */
+/* Mobile (up to 599px) */
+@media (max-width: 599px) {
+  .cards2 > ul {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .cards2-card-image img,
+  .cards2-card-image picture img {
+    max-width: 343px;
+    margin: 0 auto;
+  }
+  
+  .cards2-card-title {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  
+  .cards2-card-description {
+    font-size: 14px;
+    line-height: 22.4px;
+  }
+}
+
+/* Tablet (600px to 899px) */
+@media (min-width: 600px) and (max-width: 899px) {
+  .cards2 > ul {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  .cards2-card-link {
+    display: flex;
+    gap: 32px;
+  }
+  
+  .cards2-card-image {
+    flex-shrink: 0;
+    width: 352px;
+    margin-bottom: 0;
+  }
+  
+  .cards2-card-body {
+    flex: 1;
+    justify-content: center;
+  }
+}
+
+/* Desktop (900px and up) */
+@media (min-width: 900px) {
+  .cards2 > ul {
+    grid-template-columns: repeat(4, 256px);
+    gap: 48px;
+  }
+
+  .cards2-card-image img,
+  .cards2-card-image picture img {
+    max-width: 256px;
+  }
+}
+
+/* Large desktop (1200px and up) */
+@media (min-width: 1200px) {
+  main .section > .cards2 {
+    max-width: 1248px;
+  }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+  .cards2 > ul {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .cards2-card-link {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  .cards2-card-link:hover {
+    transform: none;
+  }
+  
+  .cards2-card-read {
+    display: none;
+  }
+}
+
+/* ==================== PERFORMANCE OPTIMIZATIONS ==================== */
+.cards2-card {
+  contain: layout style;
+}
+
+.cards2-card-image {
+  contain: layout;
+}
+
+.cards2 {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* ==================== ANIMATION PATTERNS ==================== */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cards2-card {
+  animation: cardFadeIn 0.5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+.cards2-card:nth-child(1) { animation-delay: 0.05s; }
+.cards2-card:nth-child(2) { animation-delay: 0.1s; }
+.cards2-card:nth-child(3) { animation-delay: 0.15s; }
+.cards2-card:nth-child(4) { animation-delay: 0.2s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cards2-card {
+    animation: none;
+  }
+}
+
+/* ==================== GRID FALLBACKS ==================== */
+@supports not (aspect-ratio: 1 / 1) {
+  .cards2-card-image img,
+  .cards2-card-image picture img {
+    height: auto;
+    width: 100%;
+  }
+}
+
+@supports not (display: grid) {
+  .cards2 > ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 48px;
+  }
+  
+  .cards2-card {
+    flex: 0 0 calc(50% - 24px);
+  }
+  
+  @media (max-width: 899px) {
+    .cards2-card {
+      flex: 0 0 100%;
+    }
+  }
+}
+
+/* ==================== DARK MODE SUPPORT (OPTIONAL) ==================== */
+@media (prefers-color-scheme: dark) {
+  .cards2-card-link {
+    color: inherit;
+  }
+  
+  .cards2-card-image img {
+    opacity: 0.9;
+  }
+  
+  .cards2-card-link:hover .cards2-card-image img {
+    opacity: 1;
+  }
+}
+
+/* ==================== ICON/SVG HANDLING ==================== */
+.cards2-card-meta svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ==================== BLOCK VARIANTS ==================== */
+/* Compact variant */
+.cards2.compact > ul {
+  gap: 24px;
+}
+
+.cards2.compact .cards2-card-image {
+  margin-bottom: 12px;
+}
+
+.cards2.compact .cards2-card-body {
+  gap: 8px;
+}
+
+/* Featured variant (3 columns) */
+.cards2.featured > ul {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 899px) {
+  .cards2.featured > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 599px) {
+  .cards2.featured > ul {
+    grid-template-columns: 1fr;
+  }
+}

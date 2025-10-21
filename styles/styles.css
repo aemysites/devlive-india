@@ -11,30 +11,62 @@
  */
 
 :root {
+  /* WKND Trendsetters Design Tokens */
+
   /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  --background-color: #fff;
+  --light-color: #f7f8f5;
+  --dark-color: #000;
+  --text-color: #000;
+  --text-color-inverse: #fff;
+  --text-color-muted: rgba(255, 255, 255, 0.7);
+  --link-color: #000;
+  --link-hover-color: #000;
+  --accent-color: #f4fe8b;
+  --accent-color-transparent: rgba(244, 254, 139, 0.5);
+  --accent-color-bg: rgba(244, 254, 139, 0.1);
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: "Instrument Sans", instrument-sans-fallback, sans-serif;
+  --heading-font-family: Syncopate, syncopate-fallback, sans-serif;
 
   /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  --body-font-size-m: 14.08px;
+  --body-font-size-s: 14.08px;
+  --body-font-size-xs: 14.08px;
+  --body-line-height: 1.6;
 
   /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  --heading-font-size-xxl: 90.4px;
+  --heading-font-size-xl: 45.28px;
+  --heading-font-size-l: 22.56px;
+  --heading-font-size-m: 22.56px;
+  --heading-font-size-s: 22.56px;
+  --heading-font-size-xs: 22.56px;
+
+  /* heading properties */
+  --heading-font-weight: 400;
+  --heading-line-height: 1.04;
+  --h1-letter-spacing: -0.904px;
+  --h2-letter-spacing: -0.4528px;
+  --h3-letter-spacing: -0.2256px;
+  --h1-margin-bottom: 27.12px;
+  --h2-margin-top: 20px;
+  --h3-margin-bottom: 11.28px;
+
+  /* button properties */
+  --button-border-radius: 1600px;
+  --button-padding: 16px 24px;
+  --button-box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px inset, var(--accent-color-transparent) 4px 4px 0px 0px;
+  --button-box-shadow-hover: rgb(0, 0, 0) 0px 0px 0px 2px inset, var(--accent-color-transparent) 7px 7px 0px 0px;
+  --button-background-hover: var(--accent-color-bg);
+  --button-transition: border-color 0.2s, color 0.2s, background-color 0.2s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.2s;
+
+  /* link properties */
+  --link-transition: color 0.2s;
+
+  /* section spacing */
+  --section-padding: 128px 0;
 
   /* nav height */
   --nav-height: 64px;
@@ -42,14 +74,14 @@
 
 /* fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
+  font-family: syncopate-fallback;
+  size-adjust: 95%;
+  src: local('Arial Narrow'), local('Helvetica Condensed'), local('Arial');
 }
 
 @font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
+  font-family: instrument-sans-fallback;
+  size-adjust: 100%;
   src: local('Arial');
 }
 
@@ -104,17 +136,32 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 0.8em;
-  margin-bottom: 0.25em;
+  margin-top: 0;
+  margin-bottom: 0;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: var(--heading-font-weight);
+  line-height: var(--heading-line-height);
   scroll-margin: 40px;
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  letter-spacing: var(--h1-letter-spacing);
+  margin-bottom: var(--h1-margin-bottom);
+}
+
+h2 {
+  font-size: var(--heading-font-size-xl);
+  letter-spacing: var(--h2-letter-spacing);
+  margin-top: var(--h2-margin-top);
+}
+
+h3 {
+  font-size: var(--heading-font-size-l);
+  letter-spacing: var(--h3-letter-spacing);
+  margin-bottom: var(--h3-margin-bottom);
+}
+
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
@@ -158,11 +205,12 @@ a:any-link {
   color: var(--link-color);
   text-decoration: none;
   overflow-wrap: break-word;
+  transition: var(--link-transition);
 }
 
 a:hover {
   color: var(--link-hover-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* buttons */
@@ -172,28 +220,31 @@ button {
   display: inline-block;
   max-width: 100%;
   margin: 12px 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
+  border: 0 solid transparent;
+  border-radius: var(--button-border-radius);
+  padding: var(--button-padding);
   font-family: var(--body-font-family);
   font-style: normal;
-  font-weight: 500;
-  line-height: 1.25;
+  font-weight: 400;
+  line-height: 1.2;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: transparent;
+  color: var(--text-color);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  box-shadow: var(--button-box-shadow);
+  transition: var(--button-transition);
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: var(--button-background-hover);
+  box-shadow: var(--button-box-shadow-hover);
   cursor: pointer;
 }
 
@@ -251,7 +302,38 @@ main > .section:first-of-type {
 /* section metadata */
 main .section.light,
 main .section.highlight {
-  background-color: var(--light-color);
+  background-color: var(--background-color);
   margin: 0;
-  padding: 40px 0;
+  padding: var(--section-padding);
+}
+
+main .section.grey {
+  background-color: var(--light-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: var(--section-padding);
+}
+
+main .section.dark {
+  background-color: var(--dark-color);
+  color: var(--text-color-inverse);
+  margin: 0;
+  padding: var(--section-padding);
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6 {
+  color: var(--text-color-inverse);
+}
+
+main .section.dark p {
+  color: var(--text-color-muted);
+}
+
+main .section.dark a:any-link {
+  color: var(--text-color-inverse);
 }

@@ -1,27 +1,330 @@
+/**
+ * Cards Block - WKND Trendsetters
+ * Pixel-perfect blog-style cards with full EDS pattern integration
+ * Generated using excat-design-migration-expert methodology
+ */
+
+/* ==================== BLOCK CONTAINER BASE ==================== */
+/* Block wrapper - scoped to .cards.block for specificity */
+.cards.block {
+  margin: 0;
+  padding: 0;
+  min-height: 300px; /* Prevent layout shift during loading */
+}
+
+/* ==================== SECTION INTEGRATION ==================== */
+/* How block behaves inside sections */
+main .section > .cards {
+  max-width: 1248px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+/* ==================== LOADING STATES ==================== */
+.cards[data-block-status="loading"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.cards[data-block-status="loaded"] {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.cards[data-block-status="error"] {
+  border: 2px solid red;
+  padding: 1rem;
+}
+
+/* ==================== LIST RESET (EDS PATTERN) ==================== */
 .cards > ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px;
 }
 
+/* Reset any boilerplate li styles */
 .cards > ul > li {
-  border: 1px solid #dadada;
-  background-color: var(--background-color);
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
 }
 
-.cards .cards-card-body {
-  margin: 16px;
+/* ==================== PIXEL-PERFECT CARD LAYOUT ==================== */
+/* Individual card */
+.cards-card {
+  display: grid;
+  grid-template-columns: 284px 1fr;
+  gap: 32px;
+  align-items: start;
 }
 
-.cards .cards-card-image {
+/* ==================== IMAGE HANDLING (EDS PATTERN) ==================== */
+/* Card image container */
+.cards-card-image {
+  line-height: 0; /* Prevent extra space below */
+}
+
+/* EDS optimized pictures */
+.cards-card-image picture {
+  display: block;
   line-height: 0;
 }
 
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
+.cards-card-image img,
+.cards-card-image picture > img {
+  width: 284px;
+  height: 284px;
   object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+/* Prevent layout shift - explicit dimensions */
+.cards-card-image img {
+  aspect-ratio: 1 / 1;
+}
+
+/* ==================== CARD CONTENT ==================== */
+.cards-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+}
+
+/* Card meta (e.g., "CHILL • 3 MIN READ") */
+.cards-card-meta {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+/* Card title */
+.cards-card-title {
+  font-size: 22.56px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* Card description */
+.cards-card-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* ==================== LINK PATTERNS (EDS) ==================== */
+/* Card link */
+.cards-card-link {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s ease;
+}
+
+.cards-card-link:any-link {
+  text-decoration: none;
+}
+
+.cards-card-link:hover {
+  opacity: 0.7;
+}
+
+.cards-card-link::after {
+  content: ' →';
+  margin-left: 4px;
+  transition: margin-left 0.2s ease;
+}
+
+.cards-card-link:hover::after {
+  margin-left: 8px;
+}
+
+/* ==================== ACCESSIBILITY (EDS PATTERNS) ==================== */
+/* Focus visible for keyboard navigation */
+.cards-card-link:focus-visible {
+  outline: 2px solid var(--accent-color, #000);
+  outline-offset: 2px;
+}
+
+/* Screen reader only content (if needed) */
+.cards .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==================== RESPONSIVE BREAKPOINTS (EDS STANDARD) ==================== */
+/* Tablet (600px-899px) */
+@media (min-width: 600px) and (max-width: 899px) {
+  .cards > ul {
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+
+  .cards-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .cards-card-image img,
+  .cards-card-image picture > img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+
+  .cards-card-title {
+    font-size: 20px;
+  }
+
+  .cards-card-body {
+    gap: 12px;
+  }
+}
+
+/* Mobile (<600px) */
+@media (max-width: 599px) {
+  main .section > .cards {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .cards > ul {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .cards-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cards-card-image img,
+  .cards-card-image picture > img {
+    width: 100%;
+    height: auto;
+  }
+
+  .cards-card-title {
+    font-size: 18px;
+  }
+
+  .cards-card-description {
+    font-size: 14px;
+  }
+
+  .cards-card-meta {
+    font-size: 11px;
+  }
+}
+
+/* Desktop (900px+) - already defined above as base */
+@media (min-width: 900px) {
+  .cards > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==================== REDUCED MOTION (ACCESSIBILITY) ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .cards-card-link,
+  .cards-card-link::after,
+  .cards[data-block-status="loaded"] {
+    transition: none;
+  }
+}
+
+/* ==================== HIGH CONTRAST MODE (ACCESSIBILITY) ==================== */
+@media (prefers-contrast: high) {
+  .cards-card {
+    border: 1px solid;
+  }
+
+  .cards-card-link {
+    text-decoration: underline;
+  }
+}
+
+/* ==================== PRINT STYLES ==================== */
+@media print {
+  .cards {
+    page-break-inside: avoid;
+  }
+
+  .cards-card {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .cards-card-image img {
+    max-width: 100%;
+    page-break-inside: avoid;
+  }
+
+  .cards-card-link::after {
+    content: ' (' attr(href) ')';
+  }
+}
+
+/* ==================== PERFORMANCE OPTIMIZATIONS ==================== */
+/* Contain layout for better performance */
+.cards-card {
+  contain: layout style;
+}
+
+/* Content visibility for off-screen cards */
+.cards {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* ==================== ANIMATION/TRANSITION PATTERNS ==================== */
+/* Intersection observer reveal (if JS adds .visible class) */
+.cards {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.cards.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==================== GRID FALLBACKS ==================== */
+/* Flexbox fallback for older browsers without gap support */
+@supports not (gap: 48px) {
+  .cards > ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -24px;
+  }
+
+  .cards-card {
+    margin: 24px;
+    flex: 0 0 calc(50% - 48px);
+  }
 }

@@ -1,0 +1,175 @@
+/**
+ * Accordion Block Styles - WKND Trendsetters
+ * Pixel-perfect reproduction matching original design
+ */
+
+/* Accordion container */
+.accordion {
+  max-width: 936px;
+  margin: 0 auto;
+}
+
+/* Accordion item */
+.accordion-item {
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Accordion item label (button) */
+.accordion-item-label {
+  width: 100%;
+  padding: 32px 0;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.4;
+  list-style: none;
+  user-select: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  text-align: left;
+  transition: opacity 0.2s ease;
+}
+
+.accordion-item-label:hover {
+  opacity: 0.8;
+}
+
+.accordion-item-label::-webkit-details-marker {
+  display: none;
+}
+
+/* Accordion item text */
+.accordion-item-text {
+  flex: 1;
+  padding-right: 24px;
+}
+
+/* Accordion chevron icon */
+.accordion-item-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+/* Chevron down arrow using CSS */
+.accordion-item-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate chevron when expanded */
+.accordion-item[open] .accordion-item-icon::before {
+  transform: translate(-50%, -50%) rotate(-135deg);
+}
+
+/* Accordion item body (content) */
+.accordion-item-body {
+  padding: 0 0 32px 0;
+  animation: accordion-expand 0.3s ease-out;
+}
+
+.accordion-item-body p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 16px;
+  color: var(--text-color);
+  max-width: 800px;
+}
+
+/* Expand animation */
+@keyframes accordion-expand {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 900px) {
+  .accordion-item-label {
+    font-size: 18px;
+    padding: 24px 0;
+  }
+
+  .accordion-item-body {
+    padding: 0 0 24px 0;
+  }
+
+  .accordion-item-body p {
+    font-size: 15px;
+  }
+
+  .accordion-item-text {
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .accordion-item-label {
+    font-size: 16px;
+    padding: 20px 0;
+  }
+
+  .accordion-item-body {
+    padding: 0 0 20px 0;
+  }
+
+  .accordion-item-body p {
+    font-size: 14px;
+  }
+
+  .accordion-item-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .accordion-item-icon::before {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* Accessibility - focus styles */
+.accordion-item-label:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* Accessibility - reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .accordion-item-icon,
+  .accordion-item-icon::before,
+  .accordion-item-label {
+    transition: none;
+  }
+
+  .accordion-item-body {
+    animation: none;
+  }
+}

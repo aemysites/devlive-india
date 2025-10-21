@@ -1,0 +1,48 @@
+.tabs {
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+.tabs-list {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+}
+
+.tabs-tab {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 15px 30px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tabs-tab[aria-selected="true"] {
+  border-bottom-color: #000;
+  font-weight: 700;
+}
+
+.tabs-tab:hover {
+  background: #f5f5f5;
+}
+
+.tabs-panels {
+  padding: 20px 0;
+}
+
+.tabs-panel {
+  display: none;
+}
+
+.tabs-panel[aria-hidden="false"] {
+  display: block;
+}
+
+.tabs-panel img {
+  max-width: 100%;
+  height: auto;
+}
