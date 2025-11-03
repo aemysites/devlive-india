@@ -1,0 +1,50 @@
+{
+  "variantName": "hero-feature",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2025-11-03T11:37:46.817Z",
+  "sourceContext": {
+    "originUrl": "https://www.wknd-trendsetters.site/latest-trends-young-fashion",
+    "originPage": "Latest Trends in Young Fashion blog page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "secondary",
+    "density": "compact",
+    "purpose": "feature-callout",
+    "imagePattern": "background",
+    "textLength": "medium"
+  },
+  "contentPattern": {
+    "structure": "background image + heading + bullet list + CTA",
+    "headingMaxLength": 40,
+    "descriptionMaxLength": 200,
+    "buttonCount": 1,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "feature sections with background images",
+      "callout sections with overlays",
+      "promotional banners with background imagery"
+    ],
+    "notSuitableFor": [
+      "text-only hero sections",
+      "multi-column layouts",
+      "image galleries"
+    ],
+    "similarVariants": []
+  },
+  "designTokens": {
+    "primaryColor": "#ffffff",
+    "backgroundColor": "#f5f5f5",
+    "fontFamily": "system-ui",
+    "headingSize": "2rem",
+    "padding": "40px 24px"
+  },
+  "usage": {
+    "pagesUsing": ["/latest-trends-young-fashion", "/fashion-insights"],
+    "reuseCount": 2,
+    "lastUsed": "2025-11-03T11:56:41.163Z"
+  }
+}

@@ -1,0 +1,142 @@
+.hero-feature-container .hero-feature-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+/* Container with relative positioning for background image */
+.hero-feature {
+  position: relative;
+  padding: 64px 24px;
+  min-height: 500px;
+}
+
+/* Background image - positioned absolutely behind content */
+.hero-feature > div:first-child {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-feature > div:first-child picture {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-feature > div:first-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Container for card and image - positioned relatively on top */
+.hero-feature > div:last-child {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Card styling with transparent background */
+.hero-feature-card {
+  border-radius: 20px;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px, rgba(0, 0, 0, 0.2) 6px 6px 0px 0px;
+  background-color: transparent;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Heading styling */
+.hero-feature h2 {
+  font-size: 45.28px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  line-height: 1.04;
+  margin: 0;
+  color: var(--text-color);
+}
+
+/* List styling */
+.hero-feature ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hero-feature li {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  padding-left: 28px;
+  position: relative;
+  color: var(--text-color);
+}
+
+/* Arrow icon for list items */
+.hero-feature li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Button styling */
+.hero-feature a.button {
+  font-size: 16px;
+  padding: 16px 24px;
+  border-radius: 1600px;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 2px inset, rgba(244, 254, 139, 0.5) 4px 4px 0px 0px;
+  display: inline-block;
+  width: fit-content;
+  margin: 0;
+}
+
+/* Side image styling (outside the card) */
+.hero-feature-image {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.hero-feature-image img {
+  border-radius: 20px;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: cover;
+  aspect-ratio: 1 / 1;
+}
+
+/* Desktop layout - card and image side by side */
+@media (width >= 900px) {
+  .hero-feature {
+    padding: 64px 32px;
+  }
+
+  .hero-feature > div:last-child {
+    flex-direction: row;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  /* Card takes available space */
+  .hero-feature-card {
+    flex: 1;
+    padding: 48px;
+  }
+
+  /* Image is fixed at 350px */
+  .hero-feature-image {
+    flex-shrink: 0;
+  }
+
+  .hero-feature-image img {
+    width: 350px;
+    height: 350px;
+  }
+}

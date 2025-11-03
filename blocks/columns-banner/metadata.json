@@ -1,0 +1,50 @@
+{
+  "variantName": "columns-banner",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2025-11-03T11:37:46.427Z",
+  "sourceContext": {
+    "originUrl": "https://www.wknd-trendsetters.site/latest-trends-young-fashion",
+    "originPage": "Latest Trends in Young Fashion blog page",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "hero-banner",
+    "imagePattern": "large",
+    "textLength": "medium"
+  },
+  "contentPattern": {
+    "structure": "heading + description + 2 CTAs + device image",
+    "headingMaxLength": 50,
+    "descriptionMaxLength": 200,
+    "buttonCount": 2,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "top banner sections with text and image",
+      "hero-style two-column layouts",
+      "landing page headers with CTA buttons"
+    ],
+    "notSuitableFor": [
+      "multi-row content",
+      "image galleries",
+      "text-only sections"
+    ],
+    "similarVariants": []
+  },
+  "designTokens": {
+    "primaryColor": "#000000",
+    "backgroundColor": "#ffffff",
+    "fontFamily": "system-ui",
+    "headingSize": "2.5rem",
+    "padding": "40px 24px"
+  },
+  "usage": {
+    "pagesUsing": ["/latest-trends-young-fashion"],
+    "reuseCount": 1,
+    "lastUsed": "2025-11-03T11:37:46.427Z"
+  }
+}

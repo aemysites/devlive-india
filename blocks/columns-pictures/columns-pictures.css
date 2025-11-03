@@ -1,164 +1,39 @@
-/**
- * Columns Pictures Block
- * Pixel-perfect reproduction of WKND Trendsetters design
- *
- * Design specs extracted from: https://www.wknd-trendsetters.site/
- * - Mobile (375px): 1 column, 32px gap
- * - Tablet (768px): 2 columns, 48px gap
- * - Desktop (1200px): 2 columns, 48px gap
- * - Border radius: 20px
- * - Images: square aspect ratio, cover fit
- */
-
-/* ==================== CSS Custom Properties ==================== */
-:root {
-  --columns-pictures-gap-mobile: 32px;
-  --columns-pictures-gap-desktop: 48px;
-  --columns-pictures-border-radius: 20px;
+/* Container - full width */
+.section > div.columns-pictures-wrapper {
+  max-width: unset;
 }
-
-/* ==================== Section Full-Width Override ==================== */
-/*
- * Remove max-width constraint from section to allow full-width layout
- * matching the reference design where images span the entire viewport
- */
-.section.columns-pictures-container > div {
-  max-width: none;
-  padding: 0;
-}
-
-/* ==================== Block Container Reset ==================== */
-.columns-pictures.block {
-  margin: 0;
-  padding: 0;
-}
-
-/* ==================== Main Grid Container ==================== */
 .columns-pictures > div {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--columns-pictures-gap-mobile);
-  padding: 0;
-  margin: 0;
+  gap: 32px;
+  margin-bottom: 32px;
 }
 
-/* ==================== Column Items ==================== */
+/* Image wrappers */
 .columns-pictures > div > div {
   display: block;
-  margin: 0;
-  padding: 0;
-  order: unset;
 }
 
-/* ==================== Image Styling ==================== */
+/* Images - square with rounded corners */
 .columns-pictures img {
   width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: var(--columns-pictures-border-radius);
+  border-radius: 20px;
   display: block;
 }
 
-.columns-pictures picture {
-  display: block;
-  line-height: 0;
-}
-
-/* ==================== Image Column (picture-only) ==================== */
-.columns-pictures .columns-img-col {
-  display: block;
-}
-
-.columns-pictures .columns-img-col img {
-  margin: 0;
-}
-
-/* ==================== Responsive Breakpoints ==================== */
-
-/* Tablet: 768px and up - 2 columns */
-@media (width >= 768px) {
+/* Tablet and up - grid auto-flow */
+@media (width >= 600px) {
   .columns-pictures > div {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--columns-pictures-gap-desktop);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
-/* Desktop: 900px and up - maintain 2 columns */
+/* Desktop - more columns with better sizing */
 @media (width >= 900px) {
   .columns-pictures > div {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--columns-pictures-gap-desktop);
-  }
-}
-
-/* ==================== EDS Pattern Integration ==================== */
-
-/* Loading States */
-.columns-pictures[data-block-status="loading"] {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.columns-pictures[data-block-status="loaded"] {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.columns-pictures[data-block-status="error"] {
-  border: 2px solid red;
-  padding: 1rem;
-}
-
-/* Focus Indicators (Accessibility) */
-.columns-pictures a:focus-visible,
-.columns-pictures button:focus-visible {
-  outline: 2px solid currentcolor;
-  outline-offset: 2px;
-}
-
-/* Accessibility - Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .columns-pictures * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-  .columns-pictures {
-    border: 1px solid;
-  }
-
-  .columns-pictures img {
-    border: 1px solid;
-  }
-}
-
-/* Performance Optimizations */
-.columns-pictures {
-  contain: layout style;
-}
-
-.columns-pictures img {
-  /* Improve image rendering performance */
-  content-visibility: auto;
-}
-
-/* Print Styles */
-@media print {
-  .columns-pictures {
-    page-break-inside: avoid;
-  }
-
-  .columns-pictures > div {
-    gap: 1rem;
-  }
-
-  .columns-pictures img {
-    max-height: 400px;
-    object-fit: contain;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   }
 }

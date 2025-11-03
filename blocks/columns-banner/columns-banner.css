@@ -1,0 +1,88 @@
+/* Mobile-first: single column layout */
+.columns-banner > div {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Heading styles */
+.columns-banner h1 {
+  font-size: 90px;
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+  line-height: var(--heading-line-height);
+  letter-spacing: var(--h1-letter-spacing);
+  margin-bottom: var(--h1-margin-bottom);
+}
+
+.columns-banner h1 strong {
+  font-weight: 400;
+}
+
+/* Paragraph styles */
+.columns-banner p {
+  font-size: var(--body-font-size-m);
+  line-height: var(--body-line-height);
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 32px;
+}
+
+/* Button group */
+.columns-banner .button-container {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.columns-banner .button-container a {
+  font-size: 16px;
+}
+
+/* Handle buttons in separate paragraphs */
+.columns-banner p:has(> strong > a.button) {
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 0;
+}
+
+.columns-banner a.button {
+  font-size: 16px;
+}
+
+/* Image column */
+.columns-banner > div > .columns-banner-img-col {
+  order: 0;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.columns-banner > div > .columns-banner-img-col img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content column */
+.columns-banner > div > div {
+  order: 1;
+}
+
+/* Desktop: two-column grid layout */
+@media (width >= 900px) {
+  .columns-banner > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 96px;
+    align-items: center;
+  }
+
+  .columns-banner > div > div {
+    order: unset;
+  }
+
+  .columns-banner > div > .columns-banner-img-col {
+    order: unset;
+  }
+}

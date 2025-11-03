@@ -1,0 +1,51 @@
+{
+  "variantName": "cards-trends",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2025-11-03T11:37:46.540Z",
+  "sourceContext": {
+    "originUrl": "https://www.wknd-trendsetters.site/latest-trends-young-fashion",
+    "originPage": "Latest Trends in Young Fashion blog page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "secondary",
+    "density": "spacious",
+    "purpose": "fashion-showcase",
+    "imagePattern": "grid",
+    "textLength": "medium"
+  },
+  "contentPattern": {
+    "structure": "image + tag + heading + description per card",
+    "headingMaxLength": 40,
+    "descriptionMaxLength": 150,
+    "buttonCount": 0,
+    "imageCount": 8
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "fashion trend showcases",
+      "style lookbook displays",
+      "blog post grids with images and descriptions",
+      "product or article galleries"
+    ],
+    "notSuitableFor": [
+      "text-only cards",
+      "single-column layouts",
+      "cards without images"
+    ],
+    "similarVariants": []
+  },
+  "designTokens": {
+    "primaryColor": "#000000",
+    "backgroundColor": "#f5f5f5",
+    "fontFamily": "system-ui",
+    "headingSize": "1.25rem",
+    "padding": "16px"
+  },
+  "usage": {
+    "pagesUsing": ["/latest-trends-young-fashion", "/fashion-insights"],
+    "reuseCount": 2,
+    "lastUsed": "2025-11-03T11:56:41.163Z"
+  }
+}
