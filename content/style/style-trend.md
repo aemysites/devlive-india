@@ -23,16 +23,10 @@
 
 ## Trends made for your lifestyle
 
-| Cards |
-|---|
-| Fresh drops for every mood—tennis whites, beach brights, party fits. Your next look starts here. |
-| Game on! Sporty vibes meet street style. Sneakers, sets, and all the cool you need. |
-| Chill never looked this good. Easy layers, bold extras—fun, effortless, always you. |
-| Ready to shine? Statement looks and playful details for nights you'll never forget. |
-| Remix your style. Layer, clash, repeat—make every outfit your own. |
-| Hot new labels. Discover the brands everyone's buzzing about—before they go big. |
-| Real people, real style. See how trendsetters own the scene, one outfit at a time. |
-| Season's essentials. Stay ahead with our top picks—what's trending right now. |
+| Columns (4-cols) |  |  |  |
+|---|---|---|---|
+| Fresh drops for every mood—tennis whites, beach brights, party fits. Your next look starts here. | Game on! Sporty vibes meet street style. Sneakers, sets, and all the cool you need. | Chill never looked this good. Easy layers, bold extras—fun, effortless, always you. | Ready to shine? Statement looks and playful details for nights you'll never forget. |
+| Remix your style. Layer, clash, repeat—make every outfit your own. | Hot new labels. Discover the brands everyone's buzzing about—before they go big. | Real people, real style. See how trendsetters own the scene, one outfit at a time. | Season's essentials. Stay ahead with our top picks—what's trending right now. |
 
 [Browse](/fashion-insights)
 

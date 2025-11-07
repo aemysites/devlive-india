@@ -81,3 +81,35 @@
 .columns.columns-3-cols .button-container {
   justify-content: center;
 }
+
+/* Four-column text grid layout */
+.columns.columns-4-cols > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.columns.columns-4-cols > div > div {
+  text-align: center;
+  order: unset;
+}
+
+.columns.columns-4-cols p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (width >= 600px) {
+  .columns.columns-4-cols > div {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 32px;
+  }
+}
+
+@media (width >= 900px) {
+  .columns.columns-4-cols > div {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 48px;
+  }
+}
