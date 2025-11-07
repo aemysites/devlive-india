@@ -7,20 +7,34 @@ export default function decorate(block) {
   // Parse EDS block structure
   const rows = [...block.children];
 
-  // The content is in the second row
-  const contentRow = rows[1];
-  if (!contentRow) return;
+  // Extract all content
+  let h1, description, links = [];
 
-  const contentCell = contentRow.querySelector('div');
-  if (!contentCell) return;
+  rows.forEach(row => {
+    const cell = row.querySelector('div');
+    if (!cell) return;
 
-  // Extract elements
-  const h1 = contentCell.querySelector('h1');
-  const paragraphs = contentCell.querySelectorAll('p');
+    // Check for h1
+    const heading = cell.querySelector('h1, h2, h3, h4, h5, h6');
+    if (heading && heading.textContent.trim().startsWith('#')) {
+      // Markdown h1 starts with #
+      h1 = document.createElement('h1');
+      h1.textContent = heading.textContent.replace(/^#+\s*/, '').trim();
+    } else if (heading && !h1) {
+      h1 = heading.cloneNode(true);
+    }
 
-  // Separate description paragraph from link paragraphs
-  const description = paragraphs[0];
-  const linkParagraphs = Array.from(paragraphs).slice(1);
+    // Check for description paragraph
+    const paragraphs = cell.querySelectorAll('p');
+    paragraphs.forEach(p => {
+      if (!p.querySelector('a') && p.textContent.trim() && !description) {
+        description = p.cloneNode(true);
+      } else if (p.querySelector('a')) {
+        const linkElements = p.querySelectorAll('a');
+        linkElements.forEach(link => links.push(link.cloneNode(true)));
+      }
+    });
+  });
 
   // Create hero structure matching original
   const heroContainer = document.createElement('div');
@@ -29,35 +43,24 @@ export default function decorate(block) {
   const heroContent = document.createElement('div');
   heroContent.className = 'hero-content';
 
-  // Add h1 (remove strong wrapper if present)
+  // Add h1
   if (h1) {
-    const h1Clone = h1.cloneNode(true);
-    // Extract text from strong tag if present
-    const strong = h1Clone.querySelector('strong');
-    if (strong) {
-      h1Clone.textContent = strong.textContent;
-    }
-    heroContent.appendChild(h1Clone);
+    heroContent.appendChild(h1);
   }
 
   // Add description paragraph
   if (description) {
-    const descClone = description.cloneNode(true);
-    heroContent.appendChild(descClone);
+    heroContent.appendChild(description);
   }
 
   // Create links container
-  if (linkParagraphs.length > 0) {
+  if (links.length > 0) {
     const linksContainer = document.createElement('div');
     linksContainer.className = 'hero-links';
 
-    linkParagraphs.forEach(linkP => {
-      const link = linkP.querySelector('a');
-      if (link) {
-        const linkClone = link.cloneNode(true);
-        linkClone.className = 'button';
-        linksContainer.appendChild(linkClone);
-      }
+    links.forEach(link => {
+      link.className = 'button';
+      linksContainer.appendChild(link);
     });
 
     heroContent.appendChild(linksContainer);

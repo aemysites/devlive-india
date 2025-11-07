@@ -1,3 +1,4 @@
+/* Columns block - default layout */
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -5,6 +6,8 @@
 
 .columns img {
   width: 100%;
+  border-radius: 20px;
+  display: block;
 }
 
 .columns > div > div {
@@ -19,6 +22,17 @@
   display: block;
 }
 
+/* Image-only columns (like the two images under hero) */
+.columns.columns-2-cols > div > .columns-img-col {
+  flex: 1;
+}
+
+.columns.columns-2-cols > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
 @media (width >= 900px) {
   .columns > div {
     align-items: center;
@@ -30,4 +44,40 @@
     flex: 1;
     order: unset;
   }
+
+  /* Two-column image layout */
+  .columns.columns-2-cols > div {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+/* Button container styles */
+.columns .button-container {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.columns .button-container a.button {
+  margin: 0;
+}
+
+/* Center-aligned content in single column */
+.columns.columns-3-cols > div > div {
+  text-align: center;
+}
+
+.columns.columns-3-cols h2 {
+  font-size: var(--heading-font-size-xl);
+  margin-bottom: 16px;
+}
+
+.columns.columns-3-cols p {
+  margin-bottom: 24px;
+}
+
+.columns.columns-3-cols .button-container {
+  justify-content: center;
 }

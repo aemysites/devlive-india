@@ -31,42 +31,74 @@ export default function decorate(block) {
       const contentDiv = document.createElement('div');
       contentDiv.className = 'cards-card-body';
 
-      // Extract meta, title, description, and link
-      const paragraphs = contentCell.querySelectorAll('p');
-      const heading = contentCell.querySelector('h3');
+      // Parse content - handling ### as h3
+      const rawContent = contentCell.innerHTML;
 
-      // Meta (first paragraph with strong, e.g., "Chill • 3 min read")
-      if (paragraphs[0] && paragraphs[0].querySelector('strong')) {
+      // Extract h3 from ### markdown or actual h3
+      const h3Match = rawContent.match(/###\s*([^<\n]+)/);
+      let heading = contentCell.querySelector('h3');
+
+      if (h3Match && !heading) {
+        heading = document.createElement('h3');
+        heading.textContent = h3Match[1].trim();
+      }
+
+      // Get all text content split by <br> tags
+      const parts = contentCell.innerHTML.split('<br>');
+
+      // Extract metadata (e.g., "Chill • 3 min read")
+      const metaText = parts.find(p =>
+        p.includes('•') && !p.includes('###')
+      );
+
+      if (metaText) {
         const meta = document.createElement('div');
         meta.className = 'cards-card-meta';
-        meta.textContent = paragraphs[0].textContent.trim();
+        meta.textContent = metaText.replace(/<[^>]*>/g, '').trim();
         contentDiv.append(meta);
       }
 
-      // Title
+      // Add title
       if (heading) {
         const title = heading.cloneNode(true);
         title.className = 'cards-card-title';
         contentDiv.append(title);
       }
 
-      // Description (paragraph between heading and link)
+      // Extract description (text between heading and link)
+      const paragraphs = contentCell.querySelectorAll('p');
       const descParagraph = Array.from(paragraphs).find(p =>
-        !p.querySelector('strong') && !p.querySelector('a')
+        !p.querySelector('a') && p.textContent.trim() && !p.textContent.includes('•')
       );
+
       if (descParagraph) {
         const desc = document.createElement('p');
         desc.className = 'cards-card-description';
         desc.textContent = descParagraph.textContent.trim();
         contentDiv.append(desc);
+      } else {
+        // Try to find description in text content
+        const descMatch = parts.find(p =>
+          !p.includes('###') &&
+          !p.includes('•') &&
+          !p.includes('<a ') &&
+          p.replace(/<[^>]*>/g, '').trim().length > 20
+        );
+
+        if (descMatch) {
+          const desc = document.createElement('p');
+          desc.className = 'cards-card-description';
+          desc.textContent = descMatch.replace(/<[^>]*>/g, '').trim();
+          contentDiv.append(desc);
+        }
       }
 
-      // Link (last paragraph with link)
-      const linkParagraph = Array.from(paragraphs).find(p => p.querySelector('a'));
-      if (linkParagraph) {
-        const link = linkParagraph.querySelector('a').cloneNode(true);
-        link.className = 'cards-card-link';
-        contentDiv.append(link);
+      // Link (last link in content)
+      const link = contentCell.querySelector('a');
+      if (link) {
+        const cardLink = link.cloneNode(true);
+        cardLink.className = 'cards-card-link';
+        contentDiv.append(cardLink);
       }
 
       li.append(contentDiv);
