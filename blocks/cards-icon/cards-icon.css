@@ -1,0 +1,73 @@
+/* Cards Icon - Trends Grid Style */
+.cards-icon > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+
+.cards-icon > ul > li {
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Icon container */
+.cards-icon .cards-card-image {
+  line-height: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards-icon .cards-card-image img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  filter: none;
+}
+
+/* Text content */
+.cards-icon .cards-card-body {
+  margin: 0;
+  padding: 0;
+}
+
+.cards-icon .cards-card-body p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--text-color);
+  max-width: 300px;
+}
+
+/* Responsive - 2 columns on tablet */
+@media (width >= 600px) {
+  .cards-icon > ul {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 48px 32px;
+  }
+}
+
+/* Responsive - 3 columns on desktop */
+@media (width >= 900px) {
+  .cards-icon > ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px 48px;
+  }
+}
+
+/* Responsive - 4 columns on large desktop */
+@media (width >= 1200px) {
+  .cards-icon > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
